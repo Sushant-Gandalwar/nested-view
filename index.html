@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nested Expand/Collapse with Bootstrap</title>
+    <!-- Add Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <style>
+      .nested-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-3">
+      <ul class="list-group">
+        <li
+          id="a"
+          class="list-group-item"
+          data-toggle="collapse"
+          href="#nestedContentA"
+        >
+          a
+        </li>
+      </ul>
+
+      <div id="nestedContentA" class="nested-content mt-3 collapse">
+        <div id="b" class="list-group-item">b : "Test0"</div>
+        <div id="c" class="list-group-item">c : "Test0"</div>
+        <div id="d" class="list-group-item">d : "Test0"</div>
+      </div>
+
+      <div id="contentContainer" class="mt-3">
+        <div
+          id="e"
+          class="list-group-item"
+          data-toggle="collapse"
+          href="#nestedContentE"
+        >
+          e
+        </div>
+      </div>
+
+      <div id="nestedContentE" class="nested-content collapse mt-3">
+        <div id="f" class="list-group-item">f</div>
+        <div id="g" class="list-group-item">g</div>
+        <div id="h" class="list-group-item">h</div>
+        <div id="i" class="list-group-item">i</div>
+      </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+      // Function to toggle the visibility of content based on the clicked item
+      function toggleContentVisibility(elementId) {
+        var selectedContent = document.getElementById(elementId);
+        // Toggle the max-height property to expand/collapse
+        selectedContent.style.maxHeight =
+          selectedContent.style.maxHeight === "0px"
+            ? selectedContent.scrollHeight + "px"
+            : "0";
+      }
+
+      // Add click event listeners to list items
+      document.getElementById("a").addEventListener("click", function () {
+        toggleContentVisibility("nestedContentA");
+      });
+
+      document.getElementById("e").addEventListener("click", function () {
+        toggleContentVisibility("nestedContentE");
+      });
+    </script>
+  </body>
+</html>
